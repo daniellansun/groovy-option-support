@@ -19,4 +19,24 @@ switch (find('abc')) {
         assert false;
         break;
 }
+
+assert new Some<String>('abcde').substring(0, 2) == 'ab'
+assert new Some<Integer[]>(new Integer[0]).length == 0
+assert new Some<String>('abc') == new Some<String>('abc')
+assert !(new Some<String>('abc').isEmpty())
+assert new Some<String>('abc').getOrElse('def') == 'abc'
+assert new Some<String>('abc').get() == 'abc'
+
+assert None.instance == None.instance
+assert None.instance.is(None.instance)
+assert None.instance.isEmpty()
+assert new HashSet([None.instance, None.instance, None.instance]) == new HashSet([None.instance])
+assert None.instance.getOrElse('abc') == 'abc'
+
+try {
+    None.instance.get();
+    assert false;
+} catch (NoSuchElementException e) {
+    assert true;
+}
 ```
