@@ -74,6 +74,11 @@ public class None<T> implements Option<T> {
             public T next() {
                 return null;
             }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("remove");
+            }
         };
     }
 }

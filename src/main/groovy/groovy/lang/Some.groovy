@@ -84,14 +84,19 @@ public class Some<T> implements Option<T> {
             private int cursor = 0;
 
             @Override
-            boolean hasNext() {
+            public boolean hasNext() {
                 return cursor != 1;
             }
 
             @Override
-            T next() {
+            public T next() {
                 cursor++;
                 return obj;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("remove");
             }
         }
     }
