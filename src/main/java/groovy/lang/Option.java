@@ -21,7 +21,7 @@ package groovy.lang;
 /**
  * Created by Daniel.Sun on 2016/8/10.
  */
-public interface Option<T> {
+public interface Option<T> extends Iterable<T> {
     public T get();
     public T getOrElse(T dflt);
     public boolean isEmpty();

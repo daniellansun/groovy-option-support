@@ -66,6 +66,16 @@ class OptionTest extends GroovyTestCase {
         }
     }
 
+    void testLoop() {
+        for (x in new Some<String>('123')) {
+            assert '123' == x
+        }
+
+        for (x in None.instance) {
+            assert false;
+        }
+    }
+
     private static Option<String> find(String str) {
         if ('abc' == str) {
             return new Some<String>('abc');

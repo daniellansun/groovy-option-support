@@ -3,6 +3,8 @@ Make groovy support scala-like option to avoid NPE
 
 When some methods can return null, we had better to indicate the NPE risk using the Option type. For example:
 ```groovy
+
+// examples for Option
 Option<String> find(String str) {
     if ('abc' == str) {
         return new Some<String>('abc'); // found
@@ -20,6 +22,7 @@ switch (find('abc')) {
         break;
 }
 
+// examples for Some
 assert new Some<String>('abcde').substring(0, 2) == 'ab'
 assert new Some<Integer[]>(new Integer[0]).length == 0
 assert new Some<String>('abc') == new Some<String>('abc')
@@ -27,6 +30,7 @@ assert !(new Some<String>('abc').isEmpty())
 assert new Some<String>('abc').getOrElse('def') == 'abc'
 assert new Some<String>('abc').get() == 'abc'
 
+// examples for None
 assert None.instance == None.instance
 assert None.instance.is(None.instance)
 assert None.instance.isEmpty()
@@ -38,5 +42,14 @@ try {
     assert false;
 } catch (NoSuchElementException e) {
     assert true;
+}
+
+// loop
+for (x in new Some<String>('123')) {
+    assert '123' == x
+}
+
+for (x in None.instance) {
+    assert false;
 }
 ```

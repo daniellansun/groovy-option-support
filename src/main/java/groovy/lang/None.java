@@ -18,6 +18,8 @@
  */
 package groovy.lang;
 
+import java.util.Iterator;
+
 /**
  * Created by Daniel.Sun on 2016/8/10.
  */
@@ -58,5 +60,20 @@ public class None<T> implements Option<T> {
     @Override
     public String toString() {
         return "None";
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public T next() {
+                return null;
+            }
+        };
     }
 }

@@ -77,4 +77,22 @@ public class Some<T> implements Option<T> {
     def propertyMissing(String name) {
         return obj."$name";
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private int cursor = 0;
+
+            @Override
+            boolean hasNext() {
+                return cursor != 1;
+            }
+
+            @Override
+            T next() {
+                cursor++;
+                return obj;
+            }
+        }
+    }
 }
