@@ -3,7 +3,7 @@ Make groovy support scala-like option to avoid NPE
 
 When some methods can return null, we had better to indicate the NPE risk using the Option type.
 
-In addition, we can treat the Some object as the original object. In other words, we can access any method and property of the original object via the Some object. In order to avoid Option class having same method name with the original class, the method names of Option class starts with a dollar character.
+In addition, we can treat the Some object as the original object. In other words, we can access any method and property of the original object via the Some object. In order to avoid Option class having same method names with the one of the original class, the method names of Option class start with a dollar character($).
 
 For example:
 ```groovy
