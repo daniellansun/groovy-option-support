@@ -19,6 +19,8 @@
 package groovy.lang
 
 /**
+ * Class Some<T> represents existing values of type T.
+ *
  * Created by Daniel.Sun on 2016/8/10.
  */
 public class Some<T> implements Option<T> {

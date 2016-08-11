@@ -21,6 +21,8 @@ package groovy.lang;
 import java.util.Iterator;
 
 /**
+ * The singleton represents non-existent values.
+ *
  * Created by Daniel.Sun on 2016/8/10.
  */
 public class None<T> implements Option<T> {

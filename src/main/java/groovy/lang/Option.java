@@ -21,6 +21,8 @@ package groovy.lang;
 import java.io.Serializable;
 
 /**
+ * Represents optional values. Instances of Option are either an instance of groovy.lang.Some or the singleton groovy.lang.None.
+ *
  * Created by Daniel.Sun on 2016/8/10.
  */
 public interface Option<T> extends Iterable<T>, Serializable {
