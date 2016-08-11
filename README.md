@@ -1,7 +1,10 @@
 # groovy-option-support [![Build Status](https://travis-ci.org/danielsun1106/groovy-option-support.svg?branch=master)](https://travis-ci.org/danielsun1106/groovy-option-support)
 Make groovy support scala-like option to avoid NPE
 
-When some methods can return null, we had better to indicate the NPE risk using the Option type. For example:
+When some methods can return null, we had better to indicate the NPE risk using the Option type.
+In addition, we can treat the Some object as the original object. In other words, we can access any method and property of the original object via the Some object.
+
+For example:
 ```groovy
 
 // examples for Option
