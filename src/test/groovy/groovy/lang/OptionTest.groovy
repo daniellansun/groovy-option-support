@@ -45,6 +45,13 @@ class OptionTest extends GroovyTestCase {
         assert new HashSet([new Some<String>('abc'), new Some<String>('abc'), new Some<String>('abc')]) == new HashSet([new Some<String>('abc')])
         assert new Some<String>('abc').$getOrElse('def') == 'abc'
         assert new Some<String>('abc').$get() == 'abc'
+
+        try {
+            new Some<String>(null);
+            assert false;
+        } catch (IllegalArgumentException e) {
+            assert true;
+        }
     }
 
     void testOption() {
