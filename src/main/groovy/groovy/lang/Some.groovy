@@ -72,16 +72,16 @@ public class Some<T> implements Option<T> {
         return "Some[$obj]";
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return obj.iterator();
+    }
+
     def methodMissing(String name, args) {
         return obj."$name"(*args);
     }
 
     def propertyMissing(String name) {
         return obj."$name";
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return obj.iterator();
     }
 }
