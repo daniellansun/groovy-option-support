@@ -23,7 +23,7 @@ package groovy.lang
  *
  * Created by Daniel.Sun on 2016/8/10.
  */
-public class Some<T> implements Option<T> {
+public class Some<T> extends Option<T> {
     private T obj;
 
     public Some(T obj) {
@@ -78,10 +78,14 @@ public class Some<T> implements Option<T> {
     }
 
     def methodMissing(String name, args) {
-        return obj."$name"(*args);
+        def result = obj."$name"(*args);
+
+        return Option.$create(result);
     }
 
     def propertyMissing(String name) {
-        return obj."$name";
+        def result = obj."$name";
+
+        return Option.$create(result);
     }
 }

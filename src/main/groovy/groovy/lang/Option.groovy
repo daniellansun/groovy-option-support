@@ -25,8 +25,12 @@ import java.io.Serializable;
  *
  * Created by Daniel.Sun on 2016/8/10.
  */
-public interface Option<T> extends Iterable<T>, Serializable {
-    public T $get();
-    public T $getOrElse(T dflt);
-    public boolean $isEmpty();
+public abstract class Option<T> implements Iterable<T>, Serializable {
+    public abstract T $get();
+    public abstract T $getOrElse(T dflt);
+    public abstract boolean $isEmpty();
+
+    public static <T> Option<T> $create(T obj) {
+        return null == obj ? None.instance : new Some<T>(obj);
+    }
 }

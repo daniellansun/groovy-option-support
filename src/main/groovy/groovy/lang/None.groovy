@@ -25,7 +25,7 @@ import java.util.Iterator;
  *
  * Created by Daniel.Sun on 2016/8/10.
  */
-public class None<T> implements Option<T> {
+public class None<T> extends Option<T> {
     private static final None INSTANCE = new None();
 
     private None() {}

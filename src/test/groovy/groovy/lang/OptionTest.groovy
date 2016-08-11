@@ -21,7 +21,7 @@ package groovy.lang
 /**
  * Created by Daniel.Sun on 2016/8/10.
  */
-class OptionTest extends GroovyTestCase {
+public class OptionTest extends GroovyTestCase {
     void testNone() {
         assert None.instance == None.instance
         assert None.instance.is(None.instance)
@@ -38,16 +38,17 @@ class OptionTest extends GroovyTestCase {
     }
 
     void testSome() {
-        assert new Some<String>('abcde').substring(0, 2) == 'ab'
-        assert new Some<Integer[]>(new Integer[0]).length == 0
-        assert new Some<String>('abc') == new Some<String>('abc')
-        assert !(new Some<String>('abc').$isEmpty())
-        assert new HashSet([new Some<String>('abc'), new Some<String>('abc'), new Some<String>('abc')]) == new HashSet([new Some<String>('abc')])
-        assert new Some<String>('abc').$getOrElse('def') == 'abc'
-        assert new Some<String>('abc').$get() == 'abc'
+        assert new Some('abcde').substring(0, 2) == new Some('ab')
+        assert new Some(new Integer[0]).length == new Some(0)
+        assert new Some('abc') == new Some('abc')
+        assert !(new Some('abc').$isEmpty())
+        assert new HashSet([new Some('abc'), new Some('abc'), new Some('abc')]) == new HashSet([new Some('abc')])
+        assert new Some('abc').$getOrElse('def') == 'abc'
+        assert new Some('abc').$get() == 'abc'
+        assert new Some([1, 2, 3])[0] == 1
 
         try {
-            new Some<String>(null);
+            new Some(null);
             assert false;
         } catch (IllegalArgumentException e) {
             assert true;
@@ -56,7 +57,7 @@ class OptionTest extends GroovyTestCase {
 
     void testOption() {
         switch (find('abc')) {
-            case new Some<String>('abc'):
+            case new Some('abc'):
                 assert true;
                 break;
             case None.instance:
@@ -65,32 +66,46 @@ class OptionTest extends GroovyTestCase {
         }
 
         switch (find('def')) {
-            case new Some<String>('def'):
+            case new Some('def'):
                 assert false;
                 break;
             case None.instance:
                 assert true;
                 break;
         }
+
+        assert Option.$create(null).$isEmpty()
+        assert !Option.$create('123').$isEmpty()
     }
 
     void testLoop() {
         def sb = new StringBuilder();
-        for (x in new Some<List>([1, 2, 3])) {
+        for (x in new Some([1, 2, 3])) {
             sb << x;
         }
         assert '123' == sb.toString();
 
-        for (x in None.instance) {
+        sb = new StringBuilder();
+        new Some([1, 2, 3]).each {
+            sb << it;
+        }
+        assert '123' == sb.toString();
+
+        assert [3, 4, 5] == new Some([1, 2, 3]).collect { it + 2 }
+        assert [2, 3] == new Some([1, 2, 3]).grep { it > 1 }
+
+        for (x in None.instance) { // empty loop
             assert false;
         }
+
     }
 
+    // some biz method
     private static Option<String> find(String str) {
         if ('abc' == str) {
-            return new Some<String>('abc');
+            return new Some('abc'); // found
         } else {
-            return None.instance;
+            return None.instance; // not found
         }
     }
 }
