@@ -42,6 +42,7 @@ class OptionTest extends GroovyTestCase {
         assert new Some<Integer[]>(new Integer[0]).length == 0
         assert new Some<String>('abc') == new Some<String>('abc')
         assert !(new Some<String>('abc').$isEmpty())
+        assert new HashSet([new Some<String>('abc'), new Some<String>('abc'), new Some<String>('abc')]) == new HashSet([new Some<String>('abc')])
         assert new Some<String>('abc').$getOrElse('def') == 'abc'
         assert new Some<String>('abc').$get() == 'abc'
     }
