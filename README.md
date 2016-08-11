@@ -39,12 +39,12 @@ assert new Some<String>('abc').$get() == 'abc'
 // examples for None
 assert None.instance == None.instance
 assert None.instance.is(None.instance)
-assert None.instance.isEmpty()
+assert None.instance.$isEmpty()
 assert new HashSet([None.instance, None.instance, None.instance]) == new HashSet([None.instance])
-assert None.instance.getOrElse('abc') == 'abc'
+assert None.instance.$getOrElse('abc') == 'abc'
 
 try {
-    None.instance.get();
+    None.instance.$get();
     assert false;
 } catch (NoSuchElementException e) {
     assert true;
