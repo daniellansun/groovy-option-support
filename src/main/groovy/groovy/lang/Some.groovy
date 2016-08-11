@@ -33,17 +33,17 @@ public class Some<T> implements Option<T> {
     }
 
     @Override
-    public T get() {
+    public T $get() {
         return obj;
     }
 
     @Override
-    public T getOrElse(T dflt) {
+    public T $getOrElse(T dflt) {
         return obj;
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean $isEmpty() {
         return false;
     }
 
@@ -80,24 +80,6 @@ public class Some<T> implements Option<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
-            private int cursor = 0;
-
-            @Override
-            public boolean hasNext() {
-                return cursor != 1;
-            }
-
-            @Override
-            public T next() {
-                cursor++;
-                return obj;
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException("remove");
-            }
-        }
+        return obj.iterator();
     }
 }

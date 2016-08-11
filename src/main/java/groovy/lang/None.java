@@ -33,17 +33,17 @@ public class None<T> implements Option<T> {
     }
 
     @Override
-    public T get() {
+    public T $get() {
         throw new NoSuchElementException();
     }
 
     @Override
-    public T getOrElse(T dflt) {
+    public T $getOrElse(T dflt) {
         return dflt;
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean $isEmpty() {
         return true;
     }
 

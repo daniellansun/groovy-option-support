@@ -25,12 +25,12 @@ class OptionTest extends GroovyTestCase {
     void testNone() {
         assert None.instance == None.instance
         assert None.instance.is(None.instance)
-        assert None.instance.isEmpty()
+        assert None.instance.$isEmpty()
         assert new HashSet([None.instance, None.instance, None.instance]) == new HashSet([None.instance])
-        assert None.instance.getOrElse('abc') == 'abc'
+        assert None.instance.$getOrElse('abc') == 'abc'
 
         try {
-            None.instance.get();
+            None.instance.$get();
             assert false;
         } catch (NoSuchElementException e) {
             assert true;
@@ -41,9 +41,9 @@ class OptionTest extends GroovyTestCase {
         assert new Some<String>('abcde').substring(0, 2) == 'ab'
         assert new Some<Integer[]>(new Integer[0]).length == 0
         assert new Some<String>('abc') == new Some<String>('abc')
-        assert !(new Some<String>('abc').isEmpty())
-        assert new Some<String>('abc').getOrElse('def') == 'abc'
-        assert new Some<String>('abc').get() == 'abc'
+        assert !(new Some<String>('abc').$isEmpty())
+        assert new Some<String>('abc').$getOrElse('def') == 'abc'
+        assert new Some<String>('abc').$get() == 'abc'
     }
 
     void testOption() {
@@ -67,9 +67,11 @@ class OptionTest extends GroovyTestCase {
     }
 
     void testLoop() {
-        for (x in new Some<String>('123')) {
-            assert '123' == x
+        def sb = new StringBuilder();
+        for (x in new Some<List>([1, 2, 3])) {
+            sb << x;
         }
+        assert '123' == sb.toString();
 
         for (x in None.instance) {
             assert false;

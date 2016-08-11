@@ -22,6 +22,7 @@ switch (find('abc')) {
         break;
 }
 
+
 // examples for Some
 assert new Some<String>('abcde').substring(0, 2) == 'ab'
 assert new Some<Integer[]>(new Integer[0]).length == 0
@@ -29,6 +30,7 @@ assert new Some<String>('abc') == new Some<String>('abc')
 assert !(new Some<String>('abc').isEmpty())
 assert new Some<String>('abc').getOrElse('def') == 'abc'
 assert new Some<String>('abc').get() == 'abc'
+
 
 // examples for None
 assert None.instance == None.instance
@@ -44,11 +46,15 @@ try {
     assert true;
 }
 
-// loop
-for (x in new Some<String>('123')) {
-    assert '123' == x
-}
 
+// examples for loop
+def sb = new StringBuilder();
+for (x in new Some<List>([1, 2, 3])) {
+    sb << x;
+}
+assert '123' == sb.toString();
+
+// empty loop
 for (x in None.instance) {
     assert false;
 }
