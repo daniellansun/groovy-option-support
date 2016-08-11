@@ -35,6 +35,13 @@ assert new HashSet([new Some<String>('abc'), new Some<String>('abc'), new Some<S
 assert new Some<String>('abc').$getOrElse('def') == 'abc'
 assert new Some<String>('abc').$get() == 'abc'
 
+try {
+    new Some<String>(null);
+    assert false;
+} catch (IllegalArgumentException e) {
+    assert true;
+}
+
 
 // examples for None
 assert None.instance == None.instance
