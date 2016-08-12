@@ -25,12 +25,15 @@ package groovy.lang
 public abstract class Option<T> implements Iterable<T>, Serializable {
 
     /**
+     * Returns true if the option is None, false otherwise.
      *
      * @return true if the option is None, false otherwise.
      */
     public abstract boolean $isEmpty();
 
     /**
+     * Returns true if the option is an instance of Some, false otherwise.
+     *
      * @return true if the option is an instance of Some, false otherwise.
      */
     public boolean $isDefined() {
@@ -38,12 +41,14 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
     }
 
     /**
+     * Returns the option's value
      *
      * @return the option's value
      */
     public abstract T $get();
 
     /**
+     * Returns the option's value if the option is nonempty, otherwise return the result of evaluating default.
      *
      * @param dflt the default value
      * @return the option's value if the option is nonempty, otherwise return the result of evaluating default.
@@ -53,7 +58,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
     }
 
     /**
-     * Creates Option instance
+     * Creates an Option instance
      *
      * @param obj the option's value
      * @return the Option instance
@@ -67,6 +72,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
     }
 
     /**
+     * Returns this Option if it is nonempty, otherwise return the result of evaluating alternative.
      *
      * @param alternative the default Option instance
      * @return this Option if it is nonempty, otherwise return the result of evaluating alternative.
@@ -76,6 +82,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
     }
 
     /**
+     * Returns the option's value if it is nonempty, or null if it is empty.
      *
      * @return the option's value if it is nonempty, or null if it is empty.
      */
@@ -84,7 +91,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
     }
 
     /**
-     * Choose one of the closures to call according to the Option
+     * Chooses one of the closures to call according to the Option
      *
      * @param some the closure will be called when the Option is nonempty
      * @param none the closure will be called when the Option is empty
@@ -95,6 +102,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
     }
 
     /**
+     * Returns a Some instance containing the result of applying c to this Option's value if this Option is nonempty. Otherwise return None.
      *
      * @param c a closure to convert the option's value
      * @return a Some instance containing the result of applying c to this Option's value if this Option is nonempty. Otherwise return None.
