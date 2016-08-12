@@ -24,7 +24,7 @@ package groovy.lang
  * Created by Daniel.Sun on 2016/8/10.
  */
 public class Some<T> extends Option<T> {
-    private T obj;
+    private final T obj;
 
     private Some(T obj) {
         this.obj = obj;
