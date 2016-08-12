@@ -111,13 +111,14 @@ public class OptionTest extends GroovyTestCase {
         for (x in None.instance) { // empty loop
             assert false;
         }
+
+        None.instance.each { assert false; }
     }
 
     void testCollection() {
         assert [3, 4, 5] == Option.$new([1, 2, 3]).collect { it + 2 }
         assert [2, 3] == Option.$new([1, 2, 3]).grep { it > 1 }
-
-        None.instance.each { assert false; }
+        assert 1 == Option.$new([1, 2, 3]).count { it > 2 }
     }
 
     void testObjectPath() {
