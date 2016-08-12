@@ -66,14 +66,14 @@ public class OptionTest extends GroovyTestCase {
             }
         }
 
-        def matchResult = m.get('b').$switch {
+        def result = m.get('b').$switch {
             // if result is of type Some, do something here
             return it + 8; // b:2 + 8
         } {
             // if result is of type None, do something here
             return 0;
         }
-        assert matchResult == 10;
+        assert result == 10;
 
         assert Option.$new(null).$map { it + 2 } == None.instance
         assert Option.$new(1).$map { it + 2 } == Option.$new(3)
