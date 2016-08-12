@@ -26,12 +26,24 @@ package groovy.lang
 public class Some<T> extends Option<T> {
     private T obj;
 
-    public Some(T obj) {
+    private Some(T obj) {
+        this.obj = obj;
+    }
+
+    public static Some<T> newInstance(T obj) {
         if (null == obj) {
             throw new IllegalArgumentException("The argument obj should not be null.");
         }
 
-        this.obj = obj;
+        if (None.instance == obj) {
+            throw new IllegalArgumentException("The argument obj should not be none.");
+        }
+
+        if (obj instanceof Some) {
+            return (Some<T>) obj;
+        }
+
+        return new Some<T>(obj);
     }
 
     @Override

@@ -64,11 +64,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
      * @return the Option instance
      */
     public static <T> Option<T> $new(T obj) {
-        if (obj instanceof Option) {
-            return obj;
-        }
-
-        return null == obj ? None.instance : new Some<T>(obj);
+        return (null == obj || None.instance == obj) ? None.instance : Some.newInstance(obj);
     }
 
     /**

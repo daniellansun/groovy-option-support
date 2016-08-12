@@ -37,17 +37,17 @@ public class OptionTest extends GroovyTestCase {
     }
 
     void testSome() {
-        assert new Some('abcde').substring(0, 2) == 'ab'
-        assert new Some(new Integer[0]).length == 0
-        assert new Some('abc') == new Some('abc')
-        assert !new Some('abc').$isEmpty()
-        assert new HashSet([new Some('abc'), new Some('abc'), new Some('abc')]) == new HashSet([new Some('abc')])
-        assert new Some('abc').$getOrElse('def') == 'abc'
-        assert new Some('abc').$get() == 'abc'
-        assert new Some([1, 2, 3])[0] == 1
+        assert Some.newInstance('abcde').substring(0, 2) == 'ab'
+        assert Some.newInstance(new Integer[0]).length == 0
+        assert Some.newInstance('abc') == Some.newInstance('abc')
+        assert !Some.newInstance('abc').$isEmpty()
+        assert new HashSet([Some.newInstance('abc'), Some.newInstance('abc'), Some.newInstance('abc')]) == new HashSet([Some.newInstance('abc')])
+        assert Some.newInstance('abc').$getOrElse('def') == 'abc'
+        assert Some.newInstance('abc').$get() == 'abc'
+        assert Some.newInstance([1, 2, 3])[0] == 1
 
         try {
-            new Some(null);
+            Some.newInstance(null);
             assert false;
         } catch (IllegalArgumentException e) {
             assert true;
@@ -97,13 +97,13 @@ public class OptionTest extends GroovyTestCase {
 
     void testLoop() {
         def sb = new StringBuilder();
-        for (x in new Some([1, 2, 3])) {
+        for (x in Some.newInstance([1, 2, 3])) {
             sb << x;
         }
         assert '123' == sb.toString();
 
         sb = new StringBuilder();
-        new Some([1, 2, 3]).each {
+        Some.newInstance([1, 2, 3]).each {
             sb << it;
         }
         assert '123' == sb.toString();
