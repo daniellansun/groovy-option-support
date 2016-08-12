@@ -78,14 +78,10 @@ public class Some<T> extends Option<T> {
     }
 
     def methodMissing(String name, args) {
-        def result = obj."$name"(*args);
-
-        return Option.$create(result);
+        return obj."$name"(*args);
     }
 
     def propertyMissing(String name) {
-        def result = obj."$name";
-
-        return Option.$create(result);
+        return obj."$name";
     }
 }

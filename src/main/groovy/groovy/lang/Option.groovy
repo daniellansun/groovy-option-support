@@ -30,7 +30,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
     public abstract T $getOrElse(T dflt);
     public abstract boolean $isEmpty();
 
-    public static <T> Option<T> $create(T obj) {
+    public static <T> Option<T> $new(T obj) {
         return null == obj ? None.instance : new Some<T>(obj);
     }
 }

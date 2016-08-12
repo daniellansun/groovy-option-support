@@ -38,10 +38,10 @@ public class OptionTest extends GroovyTestCase {
     }
 
     void testSome() {
-        assert new Some('abcde').substring(0, 2) == new Some('ab')
-        assert new Some(new Integer[0]).length == new Some(0)
+        assert new Some('abcde').substring(0, 2) == 'ab'
+        assert new Some(new Integer[0]).length == 0
         assert new Some('abc') == new Some('abc')
-        assert !(new Some('abc').$isEmpty())
+        assert !new Some('abc').$isEmpty()
         assert new HashSet([new Some('abc'), new Some('abc'), new Some('abc')]) == new HashSet([new Some('abc')])
         assert new Some('abc').$getOrElse('def') == 'abc'
         assert new Some('abc').$get() == 'abc'
@@ -74,8 +74,8 @@ public class OptionTest extends GroovyTestCase {
                 break;
         }
 
-        assert Option.$create(null).$isEmpty()
-        assert !Option.$create('123').$isEmpty()
+        assert Option.$new(null).$isEmpty()
+        assert !Option.$new('123').$isEmpty()
     }
 
     void testLoop() {
@@ -101,7 +101,7 @@ public class OptionTest extends GroovyTestCase {
     }
 
     // some biz method
-    private static Option<String> find(String str) {
+    private static Option find(String str) {
         if ('abc' == str) {
             return new Some('abc'); // found
         } else {

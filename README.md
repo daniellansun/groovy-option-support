@@ -9,7 +9,7 @@ For example:
 ```groovy
 
 // examples for Option
-Option<String> find(String str) {
+Option find(String str) {
     if ('abc' == str) {
         return new Some('abc'); // found
     } else {
@@ -35,15 +35,15 @@ switch (find('def')) {
         break;
 }
 
-assert Option.$create(null).$isEmpty()
-assert !Option.$create('123').$isEmpty()
+assert Option.$new(null).$isEmpty()
+assert !Option.$new('123').$isEmpty()
 
 
 // examples for Some
-assert new Some('abcde').substring(0, 2) == new Some('ab')
-assert new Some(new Integer[0]).length == new Some(0)
+assert new Some('abcde').substring(0, 2) == 'ab'
+assert new Some(new Integer[0]).length == 0
 assert new Some('abc') == new Some('abc')
-assert !(new Some('abc').$isEmpty())
+assert !new Some('abc').$isEmpty()
 assert new HashSet([new Some('abc'), new Some('abc'), new Some('abc')]) == new HashSet([new Some('abc')])
 assert new Some('abc').$getOrElse('def') == 'abc'
 assert new Some('abc').$get() == 'abc'
