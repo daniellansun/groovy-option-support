@@ -18,12 +18,20 @@ def m = new HashMap() {
     }
 }
 
-def result = m.get('b').$switch {
-    // if result is of type Some, do something here
-    return it + 8; // b:2 + 8
+m.get('b').$switch {
+    println it;
 } {
-    // if result is of type None, do something here
-    return 0;
+    println 0;
 }
-assert result == 10;
+
+```
+
+The equivalent scala code is shown as following:
+```scala
+val m = Map("a" -> 1, "b" -> 2, "c" -> 3)
+
+val r = m.get("b") match {
+    case Some(it) => println(it)
+    case None => println(0)
+}
 ```
