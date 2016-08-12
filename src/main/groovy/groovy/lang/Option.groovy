@@ -17,15 +17,12 @@
  *  under the License.
  */
 package groovy.lang
-
-import groovy.transform.CompileStatic
-
 /**
  * Represents optional values. Instances of Option are either an instance of groovy.lang.Some or the singleton groovy.lang.None.
  *
  * Created by Daniel.Sun on 2016/8/10.
  */
-@CompileStatic
+//@CompileStatic // BUG! exception in phase 'instruction selection' in source unit 'groovy-option-support\src\main\groovy\groovy\lang\Option.groovy' unexpected NullpointerException
 public abstract class Option<T> implements Iterable<T>, Serializable {
 
     /**
