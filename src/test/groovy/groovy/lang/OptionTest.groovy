@@ -17,7 +17,6 @@
  *  under the License.
  */
 package groovy.lang
-
 /**
  * Created by Daniel.Sun on 2016/8/10.
  */
@@ -56,26 +55,44 @@ public class OptionTest extends GroovyTestCase {
     }
 
     void testOption() {
-        switch (find('abc')) {
-            case new Some('abc'):
-                assert true;
-                break;
-            case None.instance:
-                assert false;
-                break;
+        def m = new HashMap() {
+            {
+                this.putAll([a: 1, b: 2, c: 3]);
+            }
+
+            @Override
+            public Option get(Object key) {
+                return Option.$new(super.get(key));
+            }
         }
 
-        switch (find('def')) {
-            case new Some('def'):
-                assert false;
-                break;
-            case None.instance:
-                assert true;
-                break;
+        def matchResult = m.get('b').$match {
+            // if result is of type Some, do something here
+            return it + 8; // b:2 + 8
+        } {
+            // if result is of type None, do something here
+            return 0;
         }
+        assert matchResult == 10;
+
+        assert Option.$new(null).$map { it + 2 } == None.instance
+        assert Option.$new(1).$map { it + 2 } == Option.$new(3)
 
         assert Option.$new(null).$isEmpty()
         assert !Option.$new('123').$isEmpty()
+
+        assert !Option.$new(null).$isDefined()
+        assert Option.$new('123').$isDefined()
+
+        assert Option.$new(null).$orElse(Option.$new('123')) == Option.$new('123')
+        assert Option.$new('123').$orElse(Option.$new('234')) == Option.$new('123')
+
+        assert Option.$new(null).$orNull() == null
+        assert Option.$new('123').$orNull() == '123'
+
+        assert Option.$new(Option.$new('123')) == Option.$new('123')
+        assert Option.$new(Option.$new(null)) == Option.$new(null)
+
     }
 
     void testLoop() {
@@ -91,21 +108,24 @@ public class OptionTest extends GroovyTestCase {
         }
         assert '123' == sb.toString();
 
-        assert [3, 4, 5] == new Some([1, 2, 3]).collect { it + 2 }
-        assert [2, 3] == new Some([1, 2, 3]).grep { it > 1 }
-
         for (x in None.instance) { // empty loop
             assert false;
         }
-
     }
 
-    // some biz method
-    private static Option find(String str) {
-        if ('abc' == str) {
-            return new Some('abc'); // found
-        } else {
-            return None.instance; // not found
-        }
+    void testCollection() {
+        assert [3, 4, 5] == Option.$new([1, 2, 3]).collect { it + 2 }
+        assert [2, 3] == Option.$new([1, 2, 3]).grep { it > 1 }
+
+        None.instance.each { assert false; }
     }
+
+    void testObjectPath() {
+        def p = Option.$new(' Hello, world ');
+        assert 'HELLO, WORLD' == p.trim().toUpperCase()
+
+        def n = Option.$new(null);
+        assert None.instance == n.trim().toUpperCase()
+    }
+
 }

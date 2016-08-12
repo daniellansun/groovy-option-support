@@ -40,11 +40,6 @@ public class Some<T> extends Option<T> {
     }
 
     @Override
-    public T $getOrElse(T dflt) {
-        return obj;
-    }
-
-    @Override
     public boolean $isEmpty() {
         return false;
     }

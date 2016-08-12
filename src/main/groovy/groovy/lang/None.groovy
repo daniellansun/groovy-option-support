@@ -16,10 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package groovy.lang;
-
-import java.util.Iterator;
-
+package groovy.lang
 /**
  * The singleton represents non-existent values.
  *
@@ -37,11 +34,6 @@ public class None<T> extends Option<T> {
     @Override
     public T $get() {
         throw new NoSuchElementException();
-    }
-
-    @Override
-    public T $getOrElse(T dflt) {
-        return dflt;
     }
 
     @Override
@@ -82,5 +74,13 @@ public class None<T> extends Option<T> {
                 throw new UnsupportedOperationException("remove");
             }
         };
+    }
+
+    def methodMissing(String name, args) {
+        return INSTANCE;
+    }
+
+    def propertyMissing(String name) {
+        return INSTANCE;
     }
 }
