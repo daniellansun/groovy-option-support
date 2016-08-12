@@ -7,6 +7,7 @@ In addition, we can treat the Some object as the original object. In other words
 
 For example(more examples can be found at [here](https://github.com/danielsun1106/groovy-option-support/blob/master/src/test/groovy/groovy/lang/OptionTest.groovy)):
 ```groovy
+// HashMap's get method will return null when no entity found, so we enhance it by wrapping the result via $new
 def m = new HashMap() {
     {
         this.putAll([a: 1, b: 2, c: 3]);
@@ -30,7 +31,7 @@ The equivalent scala code is shown as following:
 ```scala
 val m = Map("a" -> 1, "b" -> 2, "c" -> 3)
 
-val r = m.get("b") match {
+m.get("b") match {
     case Some(it) => println(it)
     case None => println(0)
 }
