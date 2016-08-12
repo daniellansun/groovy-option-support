@@ -18,7 +18,7 @@ def m = new HashMap() {
     }
 }
 
-def matchResult = m.get('b').$match {
+def matchResult = m.get('b').$switch {
     // if result is of type Some, do something here
     return it + 8; // b:2 + 8
 } {

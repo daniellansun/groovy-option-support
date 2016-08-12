@@ -90,7 +90,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
      * @param none the closure will be called when the Option is empty
      * @return the call result of some/none closure
      */
-    public Object $match(Closure some, Closure none) {
+    public Object $switch(Closure some, Closure none) {
         return this.$isEmpty() ? none.call(null) : some.call(this.$get());
     }
 
