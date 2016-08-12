@@ -17,11 +17,15 @@
  *  under the License.
  */
 package groovy.lang
+
+import groovy.transform.CompileStatic
+
 /**
  * Represents optional values. Instances of Option are either an instance of groovy.lang.Some or the singleton groovy.lang.None.
  *
  * Created by Daniel.Sun on 2016/8/10.
  */
+@CompileStatic
 public abstract class Option<T> implements Iterable<T>, Serializable {
 
     /**
@@ -54,7 +58,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
      * @return the option's value if the option is nonempty, otherwise return the result of evaluating default.
      */
     public T $getOrElse(T dflt) {
-        return this.$isEmpty() ? dflt : this.$get();
+        return this.$isEmpty() ? dflt : (T) this.$get();
     }
 
     /**
@@ -83,7 +87,7 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
      * @return the option's value if it is nonempty, or null if it is empty.
      */
     public T $orNull() {
-        return this.$isEmpty() ? null : this.$get();
+        return this.$isEmpty() ? null : (T) this.$get();
     }
 
     /**
@@ -108,6 +112,6 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
             return None.instance;
         }
 
-        return this.$new(c.call(this.$get()));
+        return this.$new((T) c.call(this.$get()));
     }
 }
