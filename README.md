@@ -27,7 +27,7 @@ m.get('b').$switch {
 
 ```
 
-The equivalent scala code is shown as following:
+The equivalent scala code is shown as follows:
 ```scala
 val m = Map("a" -> 1, "b" -> 2, "c" -> 3)
 
