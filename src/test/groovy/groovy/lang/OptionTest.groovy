@@ -31,7 +31,7 @@ public class OptionTest extends GroovyTestCase {
         try {
             None.instance.$get();
             assert false;
-        } catch (NoSuchElementException e) {
+        } catch (UnsupportedOperationException e) {
             assert true;
         }
     }

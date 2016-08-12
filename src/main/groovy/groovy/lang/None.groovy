@@ -38,7 +38,7 @@ public class None<T> extends Option<T> {
 
     @Override
     public T $get() {
-        throw new NoSuchElementException();
+        throw new UnsupportedOperationException("Cannot resolve value on None");
     }
 
     @Override
