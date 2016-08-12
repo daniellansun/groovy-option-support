@@ -30,6 +30,12 @@ public class Some<T> extends Option<T> {
         this.obj = obj;
     }
 
+    /**
+     * Creates a Some instance
+     *
+     * @param obj the value of Some instance
+     * @return a Some instance
+     */
     public static Some<T> newInstance(T obj) {
         if (null == obj) {
             throw new IllegalArgumentException("The argument obj should not be null.");
@@ -67,11 +73,7 @@ public class Some<T> extends Option<T> {
             return false;
         }
 
-        if (this.obj.equals(((Some) other).obj)) {
-            return true;
-        }
-
-        return false;
+        return this.obj.equals(((Some) other).obj);
     }
 
     @Override

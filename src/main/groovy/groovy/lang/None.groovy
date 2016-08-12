@@ -23,12 +23,17 @@ package groovy.lang
  * Created by Daniel.Sun on 2016/8/10.
  */
 public class None<T> extends Option<T> {
-    private static final None INSTANCE = new None();
+    private static final None _NONE = new None();
 
     private None() {}
 
+    /**
+     * Returns the singleton instance
+     *
+     * @return the singleton instance
+     */
     public static None getInstance() {
-        return INSTANCE;
+        return _NONE;
     }
 
     @Override
@@ -77,10 +82,10 @@ public class None<T> extends Option<T> {
     }
 
     def methodMissing(String name, args) {
-        return INSTANCE;
+        return _NONE;
     }
 
     def propertyMissing(String name) {
-        return INSTANCE;
+        return _NONE;
     }
 }
