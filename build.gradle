@@ -28,7 +28,7 @@ plugins {
 }
 
 group 'com.groovyhelp'
-version '1.0'
+version '1.0.0'
 
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
@@ -41,7 +41,7 @@ publishing {
             from components.java
             groupId 'com.groovyhelp'
             artifactId 'groovy-option-support'
-            version '1.0'
+            version '1.0.0'
         }
     }
 }
@@ -64,7 +64,7 @@ bintray {
         githubReleaseNotesFile = 'README.md'
 
         version {
-            name = '1.0'
+            name = '1.0.0'
             vcsTag = '1.0.0'
             released  = new Date()
         }
