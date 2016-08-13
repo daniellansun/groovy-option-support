@@ -51,7 +51,7 @@ bintray {
     key = System.getenv('BINTRAY_API_KEY')
     publications = ['MyPublication']
     publish = true
-    override = true
+    override = false
     pkg {
         repo = 'generic'
         name = 'groovy-option-support'
