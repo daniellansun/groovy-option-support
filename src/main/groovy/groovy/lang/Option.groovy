@@ -61,11 +61,11 @@ public abstract class Option<T> implements Iterable<T>, Serializable {
     /**
      * Creates an Option instance
      *
-     * @param obj the option's value
+     * @param value the option's value
      * @return the Option instance
      */
-    public static <T> Option<T> $new(T obj) {
-        return (null == obj || None.instance == obj) ? None.instance : Some.newInstance(obj);
+    public static <T> Option<T> $new(T value) {
+        return (null == value || None.instance == value) ? None.instance : Some.newInstance(value);
     }
 
     /**

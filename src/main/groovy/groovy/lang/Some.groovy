@@ -24,37 +24,37 @@ package groovy.lang
  * Created by Daniel.Sun on 2016/8/10.
  */
 public class Some<T> extends Option<T> {
-    private final T obj;
+    private final T value;
 
-    private Some(T obj) {
-        this.obj = obj;
+    private Some(T value) {
+        this.value = value;
     }
 
     /**
      * Creates a Some instance
      *
-     * @param obj the value of Some instance
+     * @param value the value of Some instance
      * @return a Some instance
      */
-    public static Some<T> newInstance(T obj) {
-        if (null == obj) {
-            throw new IllegalArgumentException("The argument obj should not be null.");
+    public static Some<T> newInstance(T value) {
+        if (null == value) {
+            throw new IllegalArgumentException("The argument value should not be null.");
         }
 
-        if (None.instance == obj) {
-            throw new IllegalArgumentException("The argument obj should not be none.");
+        if (None.instance == value) {
+            throw new IllegalArgumentException("The argument value should not be none.");
         }
 
-        if (obj instanceof Some) {
-            return (Some<T>) obj;
+        if (value instanceof Some) {
+            return (Some<T>) value;
         }
 
-        return new Some<T>(obj);
+        return new Some<T>(value);
     }
 
     @Override
     public T $get() {
-        return obj;
+        return this.value;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class Some<T> extends Option<T> {
 
     @Override
     public int hashCode() {
-        return obj.hashCode();
+        return this.value.hashCode();
     }
 
     @Override
@@ -73,24 +73,24 @@ public class Some<T> extends Option<T> {
             return false;
         }
 
-        return this.obj.equals(((Some) other).obj);
+        return this.value.equals(((Some) other).value);
     }
 
     @Override
     public String toString() {
-        return "Some[$obj]";
+        return "Some[$value]";
     }
 
     @Override
     public Iterator<T> iterator() {
-        return obj.iterator();
+        return this.value.iterator();
     }
 
     def methodMissing(String name, args) {
-        return obj."$name"(*args);
+        return this.value."$name"(*args);
     }
 
     def propertyMissing(String name) {
-        return obj."$name";
+        return this.value."$name";
     }
 }
