@@ -46,8 +46,18 @@ public class OptionTest extends GroovyTestCase {
         assert Some.newInstance('abc').$get() == 'abc'
         assert Some.newInstance([1, 2, 3])[0] == 1
 
+        def s = Some.newInstance('abc');
+        assert Some.newInstance(s).is(s);
+
         try {
             Some.newInstance(null);
+            assert false;
+        } catch (IllegalArgumentException e) {
+            assert true;
+        }
+
+        try {
+            Some.newInstance(None.instance);
             assert false;
         } catch (IllegalArgumentException e) {
             assert true;
