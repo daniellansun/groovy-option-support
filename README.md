@@ -50,7 +50,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.groovyhelp:groovy-option-support:1.0.0'
+    compile 'com.groovyhelp:groovy-option-support:1.0.1'
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
 }
 
