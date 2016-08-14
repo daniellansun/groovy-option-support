@@ -36,7 +36,7 @@ public class Some<T> extends Option<T> {
      * @param value the value of Some instance
      * @return a Some instance
      */
-    public static Some<T> newInstance(T value) {
+    public static <T> Some<T> newInstance(T value) {
         if (null == value) {
             throw new IllegalArgumentException("The argument value should not be null.");
         }

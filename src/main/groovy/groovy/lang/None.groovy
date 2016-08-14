@@ -22,7 +22,7 @@ package groovy.lang
  *
  * Created by Daniel.Sun on 2016/8/10.
  */
-public class None<T> extends Option<T> {
+public class None extends Option {
     private static final None _NONE = new None();
 
     private None() {}
@@ -37,7 +37,7 @@ public class None<T> extends Option<T> {
     }
 
     @Override
-    public T $get() {
+    public Object $get() {
         throw new UnsupportedOperationException("Cannot resolve value on None");
     }
 
@@ -62,15 +62,15 @@ public class None<T> extends Option<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
-        return new Iterator<T>() {
+    public Iterator iterator() {
+        return new Iterator() {
             @Override
             public boolean hasNext() {
                 return false;
             }
 
             @Override
-            public T next() {
+            public Object next() {
                 return null;
             }
 
