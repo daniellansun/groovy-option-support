@@ -11,7 +11,7 @@ In addition, we can treat the Some object as the original object. In other words
 // HashMap's get method will return null when no entity found, so we enhance it by wrapping the result via $new
 def m = new HashMap() {
     {
-        this.putAll([a: 1, b: 2, c: 3]);
+        putAll([a: 1, b: 2, c: 3]); // initialize the map
     }
 
     @Override
@@ -42,15 +42,11 @@ m.get("b") match {
 
 ## Installation
 ```groovy
-apply plugin: 'java'
 apply plugin: 'groovy'
-
-sourceCompatibility = 1.7
 
 repositories {
     maven { url 'https://dl.bintray.com/danielsun1106/generic/' }
     jcenter()
-    mavenCentral()
 }
 
 dependencies {

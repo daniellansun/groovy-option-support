@@ -57,7 +57,7 @@ public class OptionTest extends GroovyTestCase {
     void testOption() {
         def m = new HashMap() {
             {
-                this.putAll([a: 1, b: 2, c: 3]);
+                putAll([a: 1, b: 2, c: 3]);
             }
 
             @Override
